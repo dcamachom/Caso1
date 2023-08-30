@@ -20,7 +20,7 @@ public class Productor{
     public synchronized void producir (){
 
         String productoId= String.valueOf(Integer.parseInt(id)+productosProducidos); //idProducto= idProductor+numProducto
-        producto= new Producto(productoId,this);
+        producto= new Producto(productoId);
 
         bodega.addProducto(producto);
         System.out.println("Producto "+producto.getId()+" ha sido añadido a la bodega");
@@ -28,16 +28,7 @@ public class Productor{
         System.out.println("El productor "+id+ " ha producido "+productosProducidos+" productos");
 
         //esperar que el producto sea entregado
-        while(!producto.getEntregado()){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
+        producto.reportarEntregado();
         System.out.println("Productor "+id+" libre");
 
     }

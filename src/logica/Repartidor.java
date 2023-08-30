@@ -18,7 +18,10 @@ public class Repartidor {
 
     public synchronized void repartir(){
 
-
+        productoARepartir=inter.darProducto(); 
+        System.out.println("Entregando producto: "+productoARepartir.getId());   
+        productoARepartir.setEntregado();
+        productoARepartir=null;
 
     }
     

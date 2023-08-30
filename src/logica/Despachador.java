@@ -35,31 +35,10 @@ public class Despachador extends Thread{
         productoADespachar=bodega.despacharProducto();
         
         //entregar a repartidor 
-        while (inter.geProducto()==null){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        }
-
-        inter.setProducto(productoADespachar);
-
+        inter.recibirProducto(productoADespachar);
+        
         //espera hasta que sea entregado
-        while (!inter.geProducto().getRecogido()){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-
-        }
-
+        inter.esperaProductoEntregado();
         System.out.println("Producto "+productoADespachar.getId()+" ha sido recogido");
         productoADespachar=null;
 

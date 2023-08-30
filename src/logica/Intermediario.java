@@ -23,9 +23,56 @@ public class Intermediario {
 
     }
 
-    public void setProductoNull (){
+    public synchronized void recibirProducto(Producto pr){
+
+        while (!(producto==null)){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        producto=pr;
+        notify();
+
+    }
+
+    public synchronized Producto darProducto (){
+        
+        while (producto==null){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+        
+        Producto pr=producto;
         this.producto=null;
         notify();
+        
+        return pr;
+    }
+
+    public synchronized void esperaProductoEntregado(){
+
+        while(producto!=null){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        notify();
+
     }
     
 }
