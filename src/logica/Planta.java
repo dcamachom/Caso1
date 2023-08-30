@@ -1,6 +1,6 @@
 package logica;
 
-public class Planta {
+public class Planta extends Thread{
 
     private static Despachador despachador;
     private static Bodega bodega;

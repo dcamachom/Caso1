@@ -1,6 +1,6 @@
 package logica;
 
-public class Productor extends Thread{
+public class Productor{
 
     private String id;
     //private int numProductos;
@@ -20,17 +20,7 @@ public class Productor extends Thread{
     public synchronized void producir (){
 
         String productoId= String.valueOf(Integer.parseInt(id)+productosProducidos); //idProducto= idProductor+numProducto
-        producto= new Producto(productoId);
-
-        while (bodega.getEspaciosLibres()<=0){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            
-        }
+        producto= new Producto(productoId,this);
 
         bodega.addProducto(producto);
         System.out.println("Producto "+producto.getId()+" ha sido añadido a la bodega");

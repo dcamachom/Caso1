@@ -23,8 +23,18 @@ public class Bodega {
 
     }
 
-    public void addProducto(Producto producto){
+    public synchronized void addProducto(Producto producto){
 
+        while (capacidad-numOcupacion<=0){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            
+        }
+        
         productos.add(producto);
         numOcupacion++;
 
@@ -42,11 +52,12 @@ public class Bodega {
 
     }
 
-    public Producto despacharProducto(){
+    public synchronized Producto despacharProducto(){
 
         Producto pr= productos.get(0);
         productos.remove(0);
         System.out.println("Producto "+pr.getId()+" despachado");
+        notify();
         return pr;
 
     }
