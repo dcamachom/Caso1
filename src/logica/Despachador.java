@@ -2,17 +2,27 @@ package logica;
 
 public class Despachador extends Thread{
 
-    private int numProductos;
+    private int numProductores;
     private int numRepartidores;
+    private int[] productosPorProductor;
     private Producto productoADespachar;
     private Bodega bodega;
 
-    public Despachador (int numProductos, int numRepartidores, Bodega bodega){
+    public Despachador (int N, int M, Bodega BODEGA, int[] productosPorProductor){
         
-        this.numProductos= numProductos;
-        this.numRepartidores= numRepartidores;
+        this.numProductores= N;
+        this.numRepartidores= M;
         this.productoADespachar=null;
-        this.bodega=bodega;
+        this.bodega=BODEGA;
+        this.productosPorProductor=productosPorProductor;
+        
+    }
+
+    public void run(){
+       
+    }
+
+    public void tomarProducto(){
         
     }
 

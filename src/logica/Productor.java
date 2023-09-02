@@ -2,54 +2,33 @@ package logica;
 
 public class Productor extends Thread{
 
-    private String id;
-    //private int numProductos;
-    private int productosProducidos;
+    private int id;
+    private int numProductos;
+    private Bodega BODEGA;
     private Producto producto;
-    private Bodega bodega;
 
-    public Productor (String id, Bodega bodega){
+    public void run(){
+        System.out.println("Soy el productor: " + id + " y produzco: " + numProductos);
+
+        for(int i=0; i<numProductos ; i++){
+            producto = crearProducto();
+            BODEGA.almacenar(producto);
+            
+        }
+    }
+
+    public Productor (int id, int productosPorProducir, Bodega BODEGA){
 
         this.id=id;
-        this.productosProducidos=0;
         this.producto=null;
-        this.bodega=bodega;
+        this.numProductos=productosPorProducir;
+        this.BODEGA = BODEGA;
 
     }
 
-    public synchronized void producir (){
-
-        String productoId= String.valueOf(Integer.parseInt(id)+productosProducidos); //idProducto= idProductor+numProducto
-        producto= new Producto(productoId);
-
-        while (bodega.getEspaciosLibres()<=0){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            
-        }
-
-        bodega.addProducto(producto);
-        System.out.println("Producto "+producto.getId()+" ha sido añadido a la bodega");
-        productosProducidos++;
-        System.out.println("El productor "+id+ " ha producido "+productosProducidos+" productos");
-
-        //esperar que el producto sea entregado
-        while(!producto.getEntregado()){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        System.out.println("Productor "+id+" libre");
-
+    public Producto crearProducto(){
+        Producto productoCreado = new Producto(1);
+        return productoCreado;
     }
     
 }

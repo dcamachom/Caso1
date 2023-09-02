@@ -2,10 +2,10 @@ package logica;
 
 public class Producto {
 
-    private String id;
+    private int id;
     private boolean entregado;
 
-    public Producto (String id){
+    public Producto (int id){
 
         this.id=id;
         this.entregado=false;
@@ -20,7 +20,7 @@ public class Producto {
         return entregado;
     }
 
-    public String getId(){
+    public int getId(){
         return id;
     }
     
