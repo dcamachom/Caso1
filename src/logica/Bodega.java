@@ -17,7 +17,7 @@ public class Bodega {
     public synchronized void almacenar(Producto producto){
         while(productos.size()==capacidad){
             try{
-                System.out.println("No hay espacio");
+                System.out.println("No hay espacio, el productor se duerme sobre la bodega");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -25,21 +25,17 @@ public class Bodega {
         }
 
         productos.add(producto);
+        producto.dormirSobreProducto();
+        System.out.println("El productor: "+producto.getProductor().getId()+ "se durmio sobre el producto: "+ producto.getId());
         notify();
-        System.out.println("Se añadio correctamente");
+        System.out.println("Se añadio correctamente el producto: " + producto.getId());
     }
 
     public synchronized Producto retirar(){
-        while(productos.size()==0){
-            try{
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
 
         Producto productoRetirado = productos.remove(0);
         notify();
+        System.out.println("Producto "+productoRetirado.getId()+" despachado");
         return productoRetirado;
 
     }
@@ -51,11 +47,6 @@ public class Bodega {
 
     }
 
-    public void addProducto(Producto producto){
-
-        productos.add(producto);
-
-    }
 
     public int getNumOcupacion (){
 
@@ -69,13 +60,5 @@ public class Bodega {
 
     }
 
-    public Producto despacharProducto(){
-
-        Producto pr= productos.get(0);
-        productos.remove(0);
-        System.out.println("Producto "+pr.getId()+" despachado");
-        return pr;
-
-    }
 
 }

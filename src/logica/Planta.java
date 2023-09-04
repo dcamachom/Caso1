@@ -66,7 +66,7 @@ public class Planta extends Thread {
             }
 
         //Creacion despachador Thread
-        //new Despachador(nProductos, nRepartidores, BODEGA).start();
+        new Despachador(N, M, BODEGA, productosPorProducir).start();
 
         //Creacion nRepartidores Threads
 

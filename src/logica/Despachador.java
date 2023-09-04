@@ -18,7 +18,17 @@ public class Despachador extends Thread{
         
     }
 
+
+
     public void run(){
+        for(int i=0; i<numProductores; i++){
+            while(productosPorProductor[i]>0){
+                despachar();
+                
+                productosPorProductor[i]= productosPorProductor[i]-1;
+            }
+        }
+
        
     }
 
@@ -28,20 +38,19 @@ public class Despachador extends Thread{
 
     public void esperaActiva(){
 
-        System.out.println("Despachador en espera activa");
+        int suma = 5+5;
+        System.out.println("Despachador en espera activa, no hay nada en la bodega por lo que sumo 5 + 5  = " + suma);
 
     }
 
     public synchronized void despachar(){
 
-        while (bodega.getNumOcupacion()<=0){
-
+        while (bodega.getNumOcupacion()==0){
             esperaActiva();            
-
         }
 
-        productoADespachar=bodega.despacharProducto();
-        notify();
+        productoADespachar = bodega.retirar();
+
         //entregar a repartidor 
 
     }
