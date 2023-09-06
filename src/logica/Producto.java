@@ -14,12 +14,16 @@ public class Producto {
 
     }
 
-    public void dormirSobreProducto(){
+    public synchronized void dormirSobreProducto(){
         try{
             wait();
         } catch (InterruptedException e){
             e.printStackTrace();
         }
+    }
+
+    public synchronized void despertarProducto(){
+        notify();
     }
 
     public Productor getProductor(){

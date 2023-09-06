@@ -8,6 +8,7 @@ public class Planta extends Thread {
     private static int TAM;
     private static int C;
     private static Bodega BODEGA;
+    private static Intermediario inter;
 
     public Planta(int nProductor, int nRepartidores, int nBodega, int numProductos){
         TAM = nBodega;
@@ -15,6 +16,7 @@ public class Planta extends Thread {
         BODEGA = new Bodega(TAM);
         N = nProductor;
         M = nRepartidores;
+        inter= new Intermediario();
         
 
     }
@@ -66,7 +68,7 @@ public class Planta extends Thread {
             }
 
         //Creacion despachador Thread
-        new Despachador(N, M, BODEGA, productosPorProducir).start();
+        new Despachador(N, M, BODEGA, productosPorProducir, inter).start();
 
         //Creacion nRepartidores Threads
 
