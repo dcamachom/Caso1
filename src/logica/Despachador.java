@@ -53,6 +53,9 @@ public class Despachador extends Thread{
         }
 
         productoADespachar = bodega.retirar();
+        if (productoADespachar==null){
+            despachar();
+        }
 
         //entregar a repartidor 
         inter.recibirProducto(productoADespachar);

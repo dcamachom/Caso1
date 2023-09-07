@@ -33,10 +33,17 @@ public class Bodega {
 
     public synchronized Producto retirar(){
 
-        Producto productoRetirado = productos.remove(0);
+        if (productos.size()>0){
+
+            Producto productoRetirado = productos.remove(0);
         notify();
         System.out.println("Producto "+productoRetirado.getId()+" despachado");
         return productoRetirado;
+
+        }else{
+            return null;
+        }
+        
 
     }
 

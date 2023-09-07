@@ -39,11 +39,14 @@ public class Intermediario {
 
         }
 
-        Producto pr= producto;
-        this.producto=null;
+        System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor");
         notify();
-        return pr;
+        return producto;
 
+    }
+
+    public void setProducto(){
+        this.producto=null;
     }
 
     public void esperaProductoEntregado(){

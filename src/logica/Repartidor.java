@@ -22,6 +22,7 @@ public class Repartidor extends Thread{
     public void repartir(){
 
         productoARepartir=inter.darProducto();
+        inter.setProducto();
         System.out.println("Entregando producto: "+productoARepartir.getId()+ " por el repartidor: "+this.id);
         productoARepartir.setEntregado();
         productoARepartir=null;
