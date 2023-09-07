@@ -71,8 +71,9 @@ public class Planta extends Thread {
         new Despachador(N, M, BODEGA, productosPorProducir, inter).start();
 
         //Creacion nRepartidores Threads
-
-
+        for (int j=0;j<C;j++){
+            new Repartidor(String.valueOf(j), inter).start();
+        }
 
         }
 

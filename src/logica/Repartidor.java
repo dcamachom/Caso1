@@ -1,13 +1,16 @@
 package logica;
 
-public class Repartidor {
+import java.util.Random;
+
+public class Repartidor extends Thread{
 
     private String id;
     private int numProductos;
     private Producto productoARepartir;
     private Intermediario inter;
+    private static boolean entregados=false;
     
-    public Repartidor (String id, int numProductos, Intermediario inter){
+    public Repartidor (String id, Intermediario inter){
         
         this.id=id;
         this.numProductos=0;
@@ -21,16 +24,31 @@ public class Repartidor {
         productoARepartir=inter.darProducto();
         System.out.println("Entregando producto: "+productoARepartir.getId()+ " por el repartidor: "+this.id);
         productoARepartir.setEntregado();
-        productoARepartir.notify();
         productoARepartir=null;
         numProductos++;
         System.out.println("El repartidor "+id+" ha entregado "+numProductos+" productos");
 
     }
 
-    /**
-     * Falta hacer el método Run, hay que verificar si ya todos los productos fueron entregados.
-     * Para esto se necesita ayuda del despachador
-     */
+    public static void setEntregado(){
+        entregados= true;
+    }
+
+
+     public void run(){
+
+        while(!entregados){
+            repartir();
+            Random rn= new Random();
+            int aleatorio= rn.nextInt(10000-3000+1)+3000;
+            try {
+                sleep(aleatorio);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+     }
     
 }

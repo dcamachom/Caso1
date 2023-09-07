@@ -23,6 +23,8 @@ public class Intermediario {
         producto=pr;
         notify();
 
+        esperaProductoEntregado();
+
     }
 
     public synchronized Producto darProducto (){
@@ -44,7 +46,7 @@ public class Intermediario {
 
     }
 
-    public synchronized void esperaProductoEntregado(){
+    public void esperaProductoEntregado(){
 
         while(producto!=null){
 

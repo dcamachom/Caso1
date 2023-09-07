@@ -22,16 +22,13 @@ public class Producto {
         }
     }
 
-    public synchronized void despertarProducto(){
-        notify();
-    }
-
     public Productor getProductor(){
         return this.productor;
     }
 
-    public void setEntregado(){
+    public synchronized void setEntregado(){
         entregado=true;
+        notify();
     }
 
     public boolean getEntregado(){

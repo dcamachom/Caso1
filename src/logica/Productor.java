@@ -12,7 +12,9 @@ public class Productor extends Thread{
 
         for(int i=0; i<numProductos ; i++){
             producto = crearProducto(i);
+            System.out.println("El productor"+id+"creo el producto "+producto.getId());
             BODEGA.almacenar(producto);
+            producto.dormirSobreProducto();
 
         }
     }

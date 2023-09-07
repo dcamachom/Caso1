@@ -24,8 +24,8 @@ public class Bodega {
             }
         }
 
+        
         productos.add(producto);
-        producto.dormirSobreProducto();
         System.out.println("El productor: "+producto.getProductor().getId()+ "se durmio sobre el producto: "+ producto.getId());
         notify();
         System.out.println("Se añadio correctamente el producto: " + producto.getId());

@@ -8,6 +8,8 @@ public class Despachador extends Thread{
     private Producto productoADespachar;
     private Bodega bodega;
     private Intermediario inter;
+    private Boolean entregados;
+
 
     public Despachador (int N, int M, Bodega BODEGA, int[] productosPorProductor, Intermediario inter){
         
@@ -17,12 +19,14 @@ public class Despachador extends Thread{
         this.bodega=BODEGA;
         this.productosPorProductor=productosPorProductor;
         this.inter=inter;
+        this.entregados=false;
         
     }
 
 
 
     public void run(){
+        
         for(int i=0; i<numProductores; i++){
             while(productosPorProductor[i]>0){
                 despachar();
@@ -31,7 +35,8 @@ public class Despachador extends Thread{
             }
         }
 
-       
+        Repartidor.setEntregado();
+
     }
 
     public void esperaActiva(){
@@ -51,10 +56,11 @@ public class Despachador extends Thread{
 
         //entregar a repartidor 
         inter.recibirProducto(productoADespachar);
-        
-        //espera hasta que sea entregado
-        System.out.println("Despachador en espera a que el producto lo tenga un repartidor");
-        inter.esperaProductoEntregado();
+
+    }
+
+    public boolean getEntregado(){
+        return entregados;
     }
     
 }
