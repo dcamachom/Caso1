@@ -45,7 +45,7 @@ public class Intermediario {
 
     }
 
-    public void setProducto(){
+    public synchronized void setProducto(){
         this.producto=null;
     }
 

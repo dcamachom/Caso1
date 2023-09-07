@@ -24,6 +24,14 @@ public class Repartidor extends Thread{
         productoARepartir=inter.darProducto();
         inter.setProducto();
         System.out.println("Entregando producto: "+productoARepartir.getId()+ " por el repartidor: "+this.id);
+        Random rn= new Random();
+        int aleatorio= rn.nextInt(10000-3000+1)+3000;
+        try {
+            sleep(aleatorio);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         productoARepartir.setEntregado();
         productoARepartir=null;
         numProductos++;
@@ -40,14 +48,7 @@ public class Repartidor extends Thread{
 
         while(!entregados){
             repartir();
-            Random rn= new Random();
-            int aleatorio= rn.nextInt(10000-3000+1)+3000;
-            try {
-                sleep(aleatorio);
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            
         }
 
      }
