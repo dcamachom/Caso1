@@ -22,6 +22,7 @@ public class Repartidor extends Thread{
     public void repartir(){
 
         productoARepartir=inter.darProducto();
+        System.out.println("Producto: "+productoARepartir.getId()+" lo tiene el repartidor: "+ id);
         inter.setProducto();
         System.out.println("Entregando producto: "+productoARepartir.getId()+ " por el repartidor: "+this.id);
         Random rn= new Random();
@@ -52,5 +53,7 @@ public class Repartidor extends Thread{
         }
 
      }
+
+ 
     
 }

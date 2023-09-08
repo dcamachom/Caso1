@@ -13,7 +13,7 @@ public class Productor extends Thread{
         for(int i=0; i<numProductos ; i++){
             
             producto = crearProducto(i);
-            System.out.println("El productor"+id+"creo el producto "+producto.getId());
+            System.out.println("El productor: "+id+" creo el producto "+producto.getId());
             BODEGA.almacenar(producto);
             producto.dormirSobreProducto();
             System.out.println("-------");
@@ -35,6 +35,10 @@ public class Productor extends Thread{
         int productoId= Integer.parseInt(String.valueOf(id)+String.valueOf(i));
         Producto productoCreado = new Producto(productoId, this);
         return productoCreado;
+    }
+
+    public int getid(){
+        return this.id;
     }
     
 }

@@ -39,7 +39,6 @@ public class Intermediario {
 
         }
 
-        System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor");
         notify();
         return producto;
 

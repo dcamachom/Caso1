@@ -17,17 +17,17 @@ public class Bodega {
     public synchronized void almacenar(Producto producto){
         while(productos.size()==capacidad){
             try{
-                System.out.println("No hay espacio, el productor se duerme sobre la bodega");
+                System.out.println("No hay espacio, el productor" + producto.getProductor().getid() + "se duerme sobre la bodega");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
 
-        
+        System.out.println("Se almaceno el producto: " + producto.getId());
         productos.add(producto);
-        System.out.println("El productor: "+producto.getProductor().getId()+ "se durmio sobre el producto: "+ producto.getId());
-        notify();
+        System.out.println("El productor: "+producto.getProductor().getid()+ " se durmio sobre el producto: "+ producto.getId());
+        //notify();
         System.out.println("Se añadio correctamente el producto: " + producto.getId());
     }
 
@@ -35,9 +35,9 @@ public class Bodega {
 
         if (productos.size()>0){
 
-            Producto productoRetirado = productos.remove(0);
+        Producto productoRetirado = productos.remove(0);
         notify();
-        System.out.println("Producto "+productoRetirado.getId()+" despachado");
+        System.out.println("Producto "+productoRetirado.getId()+" despachado, lo tiene el despachador");
         return productoRetirado;
 
         }else{
