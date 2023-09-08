@@ -57,6 +57,7 @@ public class Despachador extends Thread{
             despachar();
         }
 
+    
         //entregar a repartidor 
         inter.recibirProducto(productoADespachar);
 
