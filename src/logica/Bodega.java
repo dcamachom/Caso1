@@ -35,7 +35,7 @@ public class Bodega {
         if (productos.size()>0){
 
         Producto productoRetirado = productos.remove(0);
-        System.out.println("El despachador tiene el producto: " + productoRetirado.getId());
+        System.out.println("El despachador tiene el producto: " + productoRetirado.getId()+" se libera un espacio de bodega");
         notify();
         return productoRetirado;
 

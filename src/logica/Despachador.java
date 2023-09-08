@@ -46,7 +46,7 @@ public class Despachador extends Thread{
 
     }
 
-    public synchronized void despachar(){
+    public void despachar(){
 
         while (bodega.getNumOcupacion()==0){
             esperaActiva();            
@@ -57,14 +57,31 @@ public class Despachador extends Thread{
             despachar();
         }
 
-    
-        //entregar a repartidor 
-        inter.recibirProducto(productoADespachar);
+        else{
+
+            productoADespachar.setDespachador(this);
+            System.out.println(("El despachador esta esperando a un repartidor"));
+            inter.recibirProducto(productoADespachar);
+            esperarRepartidor();
+
+        }
+
 
     }
 
     public boolean getEntregado(){
         return entregados;
+    }
+
+    public synchronized void esperarRepartidor(){
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+         System.out.println("Un repartidor ya tiene el producto.");
     }
     
 }

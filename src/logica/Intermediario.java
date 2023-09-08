@@ -10,7 +10,7 @@ public class Intermediario {
 
     public synchronized void recibirProducto(Producto pr){
 
-        while (producto!=null){
+        /*while (producto!=null){
 
             try {
                 wait();
@@ -18,12 +18,12 @@ public class Intermediario {
                 e.printStackTrace();
             }
 
-        }
+        }*/
 
         producto=pr;
         notify();
 
-        esperaProductoEntregado();
+        //esperaProductoEntregado();
 
     }
 
@@ -38,6 +38,7 @@ public class Intermediario {
             }
 
         }
+        System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor.");
 
         notify();
         return producto;
