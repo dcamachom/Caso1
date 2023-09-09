@@ -19,6 +19,8 @@ public class Productor extends Thread{
             System.out.println("-------");
 
         }
+
+        System.out.println("El productor: " + id + " termino su ejecucion");
     }
 
     public Productor (int id, int productosPorProducir, Bodega BODEGA){

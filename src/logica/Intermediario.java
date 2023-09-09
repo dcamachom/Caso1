@@ -22,6 +22,15 @@ public class Intermediario {
 
         producto=pr;
         notify();
+        
+        while (producto!=null){
+
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         //esperaProductoEntregado();
 
@@ -39,8 +48,7 @@ public class Intermediario {
 
         }
         System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor.");
-
-        notify();
+        notifyAll();
         return producto;
 
     }

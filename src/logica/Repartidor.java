@@ -32,10 +32,10 @@ public class Repartidor extends Thread{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        numProductos++;
+        System.out.println("El repartidor "+id+" ha entregado "+numProductos+" productos y se demoro: " + aleatorio+" seg");
         productoARepartir.setEntregado();
         productoARepartir=null;
-        numProductos++;
-        System.out.println("El repartidor "+id+" ha entregado "+numProductos+" productos");
 
     }
 

@@ -40,13 +40,20 @@ public class Despachador extends Thread{
     }
 
     public void esperaActiva(){
-
-        int suma = 5+5;
-        System.out.println("Despachador en espera activa, no hay nada en la bodega por lo que sumo 5 + 5  = " + suma);
+       try {
+        sleep(5000);
+    } catch (InterruptedException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
 
     }
 
     public void despachar(){
+
+        if(bodega.getNumOcupacion()==0){
+        System.out.println("Despachador en espera activa, no hay nada en la bodega por lo que sumo 5 + 5  = 10");
+        }
 
         while (bodega.getNumOcupacion()==0){
             esperaActiva();            
@@ -62,7 +69,7 @@ public class Despachador extends Thread{
             productoADespachar.setDespachador(this);
             System.out.println(("El despachador esta esperando a un repartidor"));
             inter.recibirProducto(productoADespachar);
-            esperarRepartidor();
+            //esperarRepartidor();
 
         }
 
@@ -82,6 +89,9 @@ public class Despachador extends Thread{
         }
 
          System.out.println("Un repartidor ya tiene el producto.");
+            
     }
+
+
     
 }
