@@ -36,6 +36,7 @@ public class Despachador extends Thread{
         }
 
         Repartidor.setEntregado();
+        System.out.println("Ya no hay productos para el despachador");
 
     }
 
@@ -69,7 +70,8 @@ public class Despachador extends Thread{
             productoADespachar.setDespachador(this);
             System.out.println(("El despachador esta esperando a un repartidor"));
             inter.recibirProducto(productoADespachar);
-            //esperarRepartidor();
+            productoADespachar=null;
+
 
         }
 

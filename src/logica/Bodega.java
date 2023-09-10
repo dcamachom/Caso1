@@ -27,22 +27,24 @@ public class Bodega {
         productos.add(producto);
         System.out.println("Se almaceno el producto: " + producto.getId());
         System.out.println("El productor: "+producto.getProductor().getid()+ " se durmio sobre el producto: "+ producto.getId());
-        //notify();
+        notify();
     }
 
     public synchronized Producto retirar(){
 
-        if (productos.size()>0){
+        while(productos.size()==0){
+            try{
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
         Producto productoRetirado = productos.remove(0);
         System.out.println("El despachador tiene el producto: " + productoRetirado.getId()+" se libera un espacio de bodega");
-        notify();
+        notifyAll();
         return productoRetirado;
 
-        }else{
-            return null;
-        }
-        
 
     }
 

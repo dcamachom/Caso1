@@ -10,30 +10,16 @@ public class Intermediario {
 
     public synchronized void recibirProducto(Producto pr){
 
-        /*while (producto!=null){
-
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }*/
-
         producto=pr;
-        notify();
-        
-        while (producto!=null){
+        notifyAll();
 
-            try {
+
+        try {
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-
-        //esperaProductoEntregado();
-
+        
     }
 
     public synchronized Producto darProducto (){
