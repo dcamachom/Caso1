@@ -66,15 +66,16 @@ public class Planta extends Thread {
                      productosPorProducir[i] = C/N;
                 }
             }
-
-        //Creacion despachador Thread
-        new Despachador(N, M, BODEGA, productosPorProducir, inter).start();
+        }
 
         //Creacion nRepartidores Threads
         for (int j=0;j<M;j++){
             new Repartidor(String.valueOf(j), inter).start();
         }
 
+        //Creacion despachador Thread
+        new Despachador(N, M, BODEGA, productosPorProducir, inter).start();
+
         }
 
 
@@ -82,9 +83,5 @@ public class Planta extends Thread {
         
 
 
-
-
-        
-    }
 
 }

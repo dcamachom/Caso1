@@ -3,6 +3,7 @@ package logica;
 public class Intermediario {
     
     private Producto producto;
+    private static boolean entregados=false;
 
     public Intermediario (){
         this.producto=null;
@@ -24,7 +25,7 @@ public class Intermediario {
 
     public synchronized Producto darProducto (){
 
-        while (producto==null){
+        while (producto==null && entregados == false){
 
             try {
                 wait();
@@ -33,30 +34,31 @@ public class Intermediario {
             }
 
         }
-        System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor.");
-        notifyAll();
+
+        if(producto!=null){
+            System.out.println("Producto: "+producto.getId()+" lo tiene el repartidor.");
+            notifyAll();
         return producto;
+        }
+
+        notifyAll();
+        return null;
+
+        
 
     }
 
-    public synchronized void setProducto(){
+    public  void setProducto(){
         this.producto=null;
     }
 
-    public void esperaProductoEntregado(){
 
-        while(producto!=null){
+    public synchronized void setEntregado(){
+        entregados= true;
+    }
 
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-        System.out.println("Producto "+producto.getId()+" ha sido recogido");
-
+    public synchronized boolean getEntregado(){
+        return entregados;
     }
 
 }

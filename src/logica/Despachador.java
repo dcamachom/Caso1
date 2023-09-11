@@ -35,7 +35,7 @@ public class Despachador extends Thread{
             }
         }
 
-        Repartidor.setEntregado();
+        inter.setEntregado();
         System.out.println("Ya no hay productos para el despachador");
 
     }
