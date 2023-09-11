@@ -40,7 +40,7 @@ public class Intermediario {
             notifyAll();
         return producto;
         }
-
+        entregados=true;
         notifyAll();
         return null;
 
