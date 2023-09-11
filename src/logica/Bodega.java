@@ -48,13 +48,6 @@ public class Bodega {
 
     }
 
-    
-    public int getEspaciosLibres(){
-
-        return capacidad-productos.size();
-
-    }
-
 
     public int getNumOcupacion (){
 
@@ -62,11 +55,6 @@ public class Bodega {
 
     }
 
-    public boolean productoEnBodega (Producto producto){
-        
-        return productos.contains(producto);
-
-    }
 
 
 }

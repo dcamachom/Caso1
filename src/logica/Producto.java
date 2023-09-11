@@ -5,7 +5,7 @@ public class Producto {
     private int id;
     private boolean entregado;
     private Productor productor;
-    private Despachador despachador;
+
 
     public Producto (int id, Productor productor){
 
@@ -39,13 +39,6 @@ public class Producto {
     public int getId(){
         return id;
     }
-
-    public void setDespachador(Despachador despachador){
-        this.despachador=despachador;
-    }
-
-    public Despachador getDespachador(){
-        return this.despachador;
-    }
+    
     
 }

@@ -8,7 +8,6 @@ public class Despachador extends Thread{
     private Producto productoADespachar;
     private Bodega bodega;
     private Intermediario inter;
-    private Boolean entregados;
 
 
     public Despachador (int N, int M, Bodega BODEGA, int[] productosPorProductor, Intermediario inter){
@@ -19,7 +18,6 @@ public class Despachador extends Thread{
         this.bodega=BODEGA;
         this.productosPorProductor=productosPorProductor;
         this.inter=inter;
-        this.entregados=false;
         
     }
 
@@ -67,7 +65,6 @@ public class Despachador extends Thread{
 
         else{
 
-            productoADespachar.setDespachador(this);
             System.out.println(("El despachador esta esperando a un repartidor"));
             inter.recibirProducto(productoADespachar);
             productoADespachar=null;
@@ -76,22 +73,6 @@ public class Despachador extends Thread{
         }
 
 
-    }
-
-    public boolean getEntregado(){
-        return entregados;
-    }
-
-    public synchronized void esperarRepartidor(){
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-         System.out.println("Un repartidor ya tiene el producto.");
-            
     }
 
 

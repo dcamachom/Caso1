@@ -1,7 +1,7 @@
 package logica;
 import java.util.Scanner;
 
-public class Planta extends Thread {
+public class Planta {
 
     private static int N;
     private static int M;
