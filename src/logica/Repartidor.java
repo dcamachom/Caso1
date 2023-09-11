@@ -47,6 +47,11 @@ public class Repartidor extends Thread{
 
         while(!inter.getEntregado()){
             repartir();
+            try {
+                sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             
         }
 
